@@ -9,7 +9,7 @@ import { MdOutlineLocalMovies } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useLoginMutation } from "../../app/api/user";
+import { useLogoutMutation } from "../../app/api/user";
 import { logout } from "../../app/features/auth/authSlice";
 
 const Navigation = () => {
@@ -24,17 +24,27 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [logoutApiCall] = useLoginMutation();
+  const [logoutApiCall] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-50 bg-[#0F172A] border w-[30%] px-[4rem] mb-[2rem] rounded">
-      <section className="flex justify-between items-center">
+    <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-50 bg-[#0F172A] border md:w-[30%]  px-[4rem] mb-[2rem] rounded">
+      <section className="flex justify-between gap-[1rem] items-center">
         {/* section1 */}
         <div className="flex justify-between items-center my-[2rem] ">
           <Link
             to="/"
             className="flex items-center transition-transform transform hover:scale-95"
           >
-            <AiOutlineHome className="mr-2 mt-3 text-[#38BDF8]" size={26} />
+            <AiOutlineHome className="mr-2 mt-3 text-teal-500" size={26} />
             <span className="hidden nav-item-name mt-[3rem] bg-transparent">
               Home
             </span>
@@ -43,7 +53,10 @@ const Navigation = () => {
             to="/movies"
             className="flex items-center transition-transform transform ml-[1rem] hover:scale-95"
           >
-            <MdOutlineLocalMovies className="mr-2 mt-3 text-[#38BDF8]" size={26} />
+            <MdOutlineLocalMovies
+              className="mr-2 mt-3 text-teal-500"
+              size={26}
+            />
             <span className="hidden nav-item-name mt-[3rem] bg-transparent">
               Shop
             </span>
@@ -83,7 +96,7 @@ const Navigation = () => {
 
           {dropdownOpen && userInfo && (
             <ul
-              className={`absolute right-0 mt-2 mr-14 w-[10rem] space-y-2 bg-white text-gray-600 ${
+              className={`absolute right-0 mt-2 mr-14 w-[10rem] space-y-2 border rounded-lg overflow-visible text-gray-600 ${
                 !userInfo.isAdmin ? "-top-20" : "-top-24"
               }`}
             >
@@ -103,7 +116,7 @@ const Navigation = () => {
               <li>
                 <Link
                   to="/profile"
-                  className="block px-4 py-2 hover:bg-gray-100"
+                  className="block w-full px-4 py-2 text-left hover:bg-gray-100 hover:text-gray-800"
                 >
                   Profile
                 </Link>
@@ -113,7 +126,7 @@ const Navigation = () => {
                 <button
                   onClick={logoutHandler}
                   className="block w-full px-4 py-2 
-            text-left hover:bg-gray-100"
+            text-left hover:bg-gray-100 hover:text-gray-800"
                 >
                   Logout
                 </button>
@@ -128,7 +141,10 @@ const Navigation = () => {
                   to="/login"
                   className="flex items-center mt-5 transition-transform transform hover:scale-95 mb-[2rem]"
                 >
-                  <AiOutlineLogin className="mr-2 mt-1 text-[#38BDF8]" size={26} />
+                  <AiOutlineLogin
+                    className="mr-2 mt-1 text-teal-500"
+                    size={26}
+                  />
                   <span className="hidden nav-item-name">LOGIN</span>
                 </Link>
               </li>
@@ -139,7 +155,7 @@ const Navigation = () => {
                   className="flex items-center mt-5 transition-transform transform hover:scale-95 ml-[1rem]"
                 >
                   <AiOutlineUserAdd
-                    className="mr-2 mt-1 text-[#38BDF8]"
+                    className="mr-2 mt-1 text-teal-500"
                     size={26}
                   />
                   <span className="hidden nav-item-name">REGISTER</span>

@@ -1,10 +1,13 @@
-import "./index.css";
+import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
+import "./index.css";
 import store from "./app/store.js";
 import { Provider } from "react-redux";
 import { Route, RouterProvider, createRoutesFromElements } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
-import ReactDOM from "react-dom";
+import Login from "./pages/Auth/Login.jsx";
+import Register from "./pages/Auth/Register.jsx";
+import Home from "./pages/Home.jsx";
 
 //Auth user
 
@@ -12,7 +15,14 @@ import ReactDOM from "react-dom";
 
 //router
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/" element={<App />} />)
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route index={true} path="/" element={<Home />} />
+      {/* <Route path="/movies" element={<AllMovies />} /> */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+    </Route>
+  )
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(

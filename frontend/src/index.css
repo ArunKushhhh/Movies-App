@@ -7,4 +7,14 @@
     padding: 0;
     box-sizing: border-box;
     background: #0F172A;
+    color: white;
+}
+
+input, textarea{
+    background: whitesmoke;
+    color: black;
+}
+
+select option {
+    color: black;
 }

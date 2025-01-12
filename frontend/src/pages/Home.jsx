@@ -4,7 +4,7 @@ import Navigation from "./Auth/Navigation";
 const Home = () => {
   return (
     <div>
-      <Navigation />
+      HOME
     </div>
   );
 };

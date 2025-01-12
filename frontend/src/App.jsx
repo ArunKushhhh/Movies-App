@@ -1,14 +1,17 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import Navigation from "./pages/Auth/Navigation";
 
 const App = () => {
   return (
-    <div>
-      <Routes>
-        <Route index={true} path="*" element={<Home />} />
-      </Routes>
-    </div>
+    <>
+      <ToastContainer />
+      <Navigation />
+      <main className="py-3">
+        <Outlet />
+      </main>
+    </>
   );
 };
 
