@@ -6,8 +6,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: #0F172A;
     color: white;
+}
+
+body{
+    background: #0F172A;
+
 }
 
 input, textarea{
