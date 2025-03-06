@@ -111,11 +111,74 @@ const deleteMovie = asyncHandler(async (req, res) => {
   }
 });
 
+//Delete Comment
+const deleteComment = asyncHandler(async (req, res) => {
+  try {
+    const { movieId, reviewId } = req.body;
+    const movie = await Movie.findById(movieId);
+    if (!movie) {
+      return res.status(404).json({ message: "Movie not found" });
+    }
+    const review = movie.reviews.find((r) => r._id.toString() === reviewId);
+    if (!review) {
+      return res.status(404).json({ message: "Review not found" });
+    }
+    const index = movie.reviews.indexOf(review);
+    movie.reviews.splice(index, 1);
+    movie.numReviews = movie.reviews.length;
+    movie.rating =
+      movie.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      movie.reviews.length;
+    await movie.save();
+    res.json({ message: "Review deleted" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+//Get New Movies
+const getNewMovies = asyncHandler(async (req, res) => {
+  try {
+    const movies = await Movie.find().sort({ createdAt: -1 }).limit(10);
+    res.json(movies);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+//Get Top Movies
+const getTopMovies = asyncHandler(async (req, res) => {
+  try {
+    const movies = await Movie.find().sort({ rating: -1 }).limit(10);
+    res.json(movies);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+//Get Random Movies
+const getRandomMovies = asyncHandler(async (req, res) => {
+  try {
+    const movies = await Movie.aggregate([{ $sample: { size: 10 } }]);
+    res.json(movies);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error.message });
+  }
+});
+
 export {
   createMovie,
   getAllMovies,
   getSpecificMovie,
   updateMovie,
   movieReview,
-  deleteMovie
+  deleteMovie,
+  deleteComment,
+  getNewMovies,
+  getTopMovies,
+  getRandomMovies
 };
