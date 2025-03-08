@@ -36,7 +36,7 @@ const Navigation = () => {
     }
   };
   return (
-    <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-50 bg-[#0F172A] border md:w-[30%]  px-[4rem] mb-[2rem] rounded">
+    <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-50 bg-[#101010] border md:w-[30%]  px-[4rem] mb-[2rem] rounded">
       <section className="flex justify-between gap-[1rem] items-center">
         {/* section1 */}
         <div className="flex justify-between items-center my-[2rem] ">
@@ -105,7 +105,7 @@ const Navigation = () => {
                   <li>
                     <Link
                       to="/admin/movies/dashboard"
-                      className="block px-4 py-2 hover:bg-gray-100"
+                      className="block px-4 py-2 bg-[#101010] hover:text-gray-800 hover:bg-gray-100"
                     >
                       Dashboard
                     </Link>
@@ -116,7 +116,7 @@ const Navigation = () => {
               <li>
                 <Link
                   to="/profile"
-                  className="block w-full px-4 py-2 text-left hover:bg-gray-100 hover:text-gray-800"
+                  className="block bg-[#101010] w-full px-4 py-2 text-left hover:bg-gray-100 hover:text-gray-800"
                 >
                   Profile
                 </Link>
@@ -125,7 +125,7 @@ const Navigation = () => {
               <li>
                 <button
                   onClick={logoutHandler}
-                  className="block w-full px-4 py-2 
+                  className="block w-full bg-[#101010] px-4 py-2 
             text-left hover:bg-gray-100 hover:text-gray-800"
                 >
                   Logout
