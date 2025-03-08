@@ -18,6 +18,7 @@ import Profile from "./pages/User/Profile.jsx";
 import Login from "./pages/Auth/Login.jsx";
 import Register from "./pages/Auth/Register.jsx";
 import Home from "./pages/Home.jsx";
+import CreateMovie from "./pages/Admin/CreateMovie.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
 
       <Route path="" element={<AdminRoutes />}>
         <Route path="admin/movies/genre" element={<GenreList />} />
+        <Route path="admin/movies/create" element={<CreateMovie />} />
       </Route>
     </Route>
   )
