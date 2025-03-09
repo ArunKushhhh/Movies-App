@@ -1,11 +1,16 @@
 import React from "react";
-import Navigation from "./Auth/Navigation";
+import Header from "./Movies/Header";
+import MovieContainerPage from "./Movies/MovieContainerPage";
 
 const Home = () => {
   return (
-    <div>
-      HOME
-    </div>
+    <>
+      <Header />
+
+      <section className="mt-[10rem]">
+        <MovieContainerPage />
+      </section>
+    </>
   );
 };
 
