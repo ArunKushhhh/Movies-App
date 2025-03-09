@@ -3,12 +3,14 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "./api/apiSlice.js";
 //importing the authRedcucer from redux to manage the loggin info of the user
 import authReducer from "./features/auth/authSlice.js";
+import moviesReducer from "./features/movies/moviesSlice.js";
 
 const store = configureStore({
   reducer: {
     //registering user
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authReducer,
+    movies: moviesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),
