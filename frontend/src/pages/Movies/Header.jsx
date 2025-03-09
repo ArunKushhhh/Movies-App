@@ -15,7 +15,7 @@ const Header = () => {
           Home
         </Link>
         <Link
-          to="/"
+          to="/movies"
           className="transition duration-300 ease-in-out hover:bg-teal-200 block p-2 rounded mb-1 md:mb-2 text-lg"
         >
           Browse Movies
